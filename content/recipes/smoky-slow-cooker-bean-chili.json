@@ -1,0 +1,42 @@
+{
+  "slug": "smoky-slow-cooker-bean-chili",
+  "title": "Smoky Slow Cooker Bean Chili",
+  "description": "A hearty, mild bean chili that cooks itself in the slow cooker. Replace with your own description.",
+  "author": "Your Name",
+  "updated": "2026-11-19",
+  "category": "Main course",
+  "cuisine": "American",
+  "skill": "Easy",
+  "cost": "$$",
+  "prep": 15,
+  "cook": 360,
+  "baseServings": 8,
+  "rating": { "value": 4.8, "count": 212 },
+  "sections": [
+    { "h": "Why slow cooking works", "p": "Write your own explanation of the method here. Keep it to a short paragraph, then give exact low and high heat times." },
+    { "h": "Ingredients, explained", "p": "For each key ingredient, give a bold name and one sentence about the choice or a substitution." },
+    { "h": "How to make it", "p": "Summarize the process in four short verbs (Brown, Transfer, Combine, Cook). The full method lives in the recipe card below." }
+  ],
+  "ingredients": [
+    { "a": 2, "u": "lb", "m": 900, "mu": "g", "t": "ground beef or turkey" },
+    { "a": 1, "t": "large onion, diced" },
+    { "a": 4, "t": "garlic cloves, minced" },
+    { "a": 2, "u": "tbsp", "t": "chili powder" },
+    { "a": 2, "u": "tsp", "t": "smoked paprika" },
+    { "a": 2, "u": "tsp", "t": "ground cumin" },
+    { "a": 1, "u": "tsp", "t": "dried oregano" },
+    { "a": 1.5, "u": "tsp", "t": "fine sea salt, or to taste" },
+    { "a": 1, "u": "can (15 oz)", "m": 425, "mu": "g", "t": "black beans, drained and rinsed" },
+    { "a": 1, "u": "can (15 oz)", "m": 425, "mu": "g", "t": "kidney beans, drained and rinsed" },
+    { "a": 30, "u": "oz", "m": 850, "mu": "g", "t": "diced tomatoes, with juice" },
+    { "a": 15, "u": "oz", "m": 425, "mu": "g", "t": "tomato sauce" }
+  ],
+  "steps": [
+    "Heat a large skillet over medium-high. Brown the meat 4 to 5 minutes, breaking it up, then add the onion and cook until tender.",
+    "Stir in the garlic and spices for 30 seconds. Transfer everything to a 6-quart slow cooker.",
+    "Add the drained beans, tomatoes and tomato sauce. Stir to combine.",
+    "Cover and cook on low 6 to 8 hours or high 3 to 4 hours. Taste and adjust the salt before serving."
+  ],
+  "notes": "Canned goods vary in salt, so season at the end. For a thicker chili, cook uncovered for the last 15 minutes.",
+  "nutrition": { "Calories": "290", "Protein": "24 g", "Carbohydrates": "24 g", "Fat": "11 g", "Fiber": "8 g", "Sodium": "870 mg" }
+}

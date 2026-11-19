@@ -1,11 +1,68 @@
-:root{--bg:#fbfaf8;--surface:#fff;--ink:#1c2226;--muted:#5c666d;--line:#dde1e3;--accent:#14584f;--accent-ink:#fff;--hot:#c2412d;--soft:#eef4f2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14181a;--surface:#1b2124;--ink:#e8ecee;--muted:#9aa5ab;--line:#2f383d;--accent:#5cc2b2;--accent-ink:#0b1b18;--hot:#ff8670;--soft:#1f2b29;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#14181a;--surface:#1b2124;--ink:#e8ecee;--muted:#9aa5ab;--line:#2f383d;--accent:#5cc2b2;--accent-ink:#0b1b18;--hot:#ff8670;--soft:#1f2b29;color-scheme:dark}
-html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
-*,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.65 var(--font-body),Georgia,serif}
+:root {
+  --bg:#fbfaf8;
+  --surface:#fff;
+  --ink:#1c2226;
+  --muted:#5c666d;
+  --line:#dde1e3;
+  --accent:#14584f;
+  --accent-ink:#fff;
+  --hot:#c2412d;
+  --soft:#eef4f2;
+  color-scheme:light;
+}
+
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#14181a;
+    --surface:#1b2124;
+    --ink:#e8ecee;
+    --muted:#9aa5ab;
+    --line:#2f383d;
+    --accent:#5cc2b2;
+    --accent-ink:#0b1b18;
+    --hot:#ff8670;
+    --soft:#1f2b29;
+    color-scheme:dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:#14181a;
+  --surface:#1b2124;
+  --ink:#e8ecee;
+  --muted:#9aa5ab;
+  --line:#2f383d;
+  --accent:#5cc2b2;
+  --accent-ink:#0b1b18;
+  --hot:#ff8670;
+  --soft:#1f2b29;
+  color-scheme:dark;
+}
+
+html {
+  scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);
+  scroll-behavior:smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing:border-box;
+}
+
+body {
+  min-height:100vh;
+  margin:0;
+  overflow-x:hidden;
+  background:var(--bg);
+  color:var(--ink);
+  font:18px/1.65 var(--font-body),Georgia,serif;
+}
 h1,h2,h3,.ui,.btn,nav,.crumbs,.byline,.times,.tools,label,.comment .who,.comment .when,.meta,table,.grid a,footer{font-family:var(--font-ui),system-ui,sans-serif}
 a{color:var(--accent)}
+button,input,textarea,select{font:inherit}
+img,svg,canvas,video{display:block;max-width:100%}
+table{width:100%}
 :focus-visible{outline:3px solid var(--hot);outline-offset:2px}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px}
 .wrap.wide{max-width:1000px}

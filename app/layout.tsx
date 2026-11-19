@@ -5,8 +5,17 @@ import Footer from "@/components/Footer";
 import { SITE } from "@/lib/recipes";
 import "./globals.css";
 
-const archivo = Archivo({ subsets: ["latin"], weight: ["500", "700", "800"], variable: "--font-ui" });
-const serif = Source_Serif_4({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-body" });
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["500", "700", "800"],
+  variable: "--font-ui",
+});
+
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-body",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -16,12 +25,34 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
+const themeInitScript = `
+(function () {
+  try {
+    var saved = localStorage.getItem("hl-theme");
+    if (saved === "dark" || saved === "light") {
+      document.documentElement.setAttribute("data-theme", saved);
+    }
+  } catch (e) {}
+})();
+`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${archivo.variable} ${serif.variable}`}>
-      <body>
+    <html
+      lang="en"
+      className={`${archivo.variable} ${serif.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body suppressHydrationWarning>
         <Header />
         {children}
         <Footer />

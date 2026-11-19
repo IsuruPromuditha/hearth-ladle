@@ -1,22 +1,28 @@
+// lib/format.ts
 import type { Ingredient } from "./recipes";
 
-const FR: Record<number, string> = { 0.25: "¼", 0.5: "½", 0.75: "¾" };
-
-function fraction(n: number): string {
-  const q = Math.max(0.25, Math.round(n * 4) / 4);
-  const whole = Math.floor(q);
-  const f = q - whole;
-  return `${whole || ""}${f ? FR[f] ?? "" : ""}` || "0";
+export function formatMinutes(mins: number): string {
+  if (mins < 60) return `${mins}m`;
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  return m === 0 ? `${h}h` : `${h}h ${m}m`;
 }
 
-export function formatIngredient(it: Ingredient, factor: number, metric: boolean): string {
-  if (metric && it.m && it.mu) return `${Math.round((it.m * factor) / 5) * 5} ${it.mu}`;
-  const amount = it.a * factor;
-  if (it.u === "oz" || it.u === "lb") return `${Math.round(amount * 10) / 10} ${it.u}`;
-  return `${fraction(amount)}${it.u ? " " + it.u : ""}`;
+function roundNice(val: number): string {
+  const rounded = Math.round(val * 100) / 100;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1).replace(/\.0$/, "");
 }
 
-export function formatMinutes(min: number): string {
-  const h = Math.floor(min / 60), m = min % 60;
-  return h ? `${h} hr${m ? " " + m + " min" : ""}` : `${m} min`;
+export function formatIngredient(ing: Ingredient, factor: number, metric: boolean): string {
+  const scaled = ing.a * factor;
+  const unit = (ing.u ?? "").toLowerCase();
+
+  if (metric) {
+    if (unit === "lb") return `${Math.round(scaled * 453.592)} g`;
+    if (unit === "oz") return `${Math.round(scaled * 28.3495)} g`;
+    if (unit === "tbsp") return `${Math.round(scaled * 15)} ml`;
+    if (unit === "tsp") return `${Math.round(scaled * 5)} ml`;
+  }
+
+  return ing.u ? `${roundNice(scaled)} ${ing.u}` : roundNice(scaled);
 }

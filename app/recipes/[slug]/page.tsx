@@ -1,5 +1,6 @@
 // app/recipes/[slug]/page.tsx
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import RecipeCard from "@/components/RecipeCard";
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: r.description,
       type: "article",
       url: `${SITE}/recipes/${r.slug}`,
+      images: [{ url: r.image }],
     },
   };
 }
@@ -55,6 +57,7 @@ export default async function RecipePage({ params }: Props) {
     "@type": "Recipe",
     name: r.title,
     description: r.description,
+    image: `${SITE}${r.image}`,
     author: { "@type": "Person", name: r.author },
     datePublished: r.updated,
     prepTime: `PT${r.prep}M`,
@@ -82,13 +85,14 @@ export default async function RecipePage({ params }: Props) {
   };
 
   return (
-    <main className="wrap">
+    <main className="wrap narrow">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="crumbs pre">
-        <Link href="/">Home</Link> / <Link href="/">Recipes</Link> / {r.category}
+        <Link href="/">Home</Link> / <Link href="/#recipes-feed">Recipes</Link> /{" "}
+        {r.category}
       </div>
       <article>
         <h1>{r.title}</h1>
@@ -102,7 +106,7 @@ export default async function RecipePage({ params }: Props) {
             <span className="stars" aria-label={`${r.rating.value} out of 5`}>
               ★★★★★
             </span>{" "}
-            {r.rating.value} ({r.rating.count})
+            {r.rating.value} ({r.rating.count.toLocaleString()})
           </a>
         </div>
         <div className="actions pre">
@@ -110,14 +114,25 @@ export default async function RecipePage({ params }: Props) {
             Jump to recipe
           </a>
           <a className="btn" href="#comments">
-            Rate
+            Rate &amp; Review
           </a>
         </div>
 
-        <div className="hero">
-          Hero photo goes here. Use next/image with a file in /public.
+        <div className="hero aspect-[16/10]">
+          <Image
+            src={r.image}
+            alt={r.title}
+            fill
+            priority
+            sizes="(max-width: 820px) 100vw, 820px"
+            referrerPolicy="no-referrer"
+            className="object-cover"
+          />
         </div>
-        <p className="note">This post may contain affiliate links.</p>
+        <p className="note">
+          Kitchen-tested by Hearth &amp; Ladle. Scroll down for the printable
+          recipe card and nutrition details.
+        </p>
 
         {r.sections.map((s) => (
           <section key={s.h}>

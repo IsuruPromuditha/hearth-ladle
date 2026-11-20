@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 import {
   ArrowRight,
@@ -118,6 +118,12 @@ function RecipeThumb({
   );
 }
 
+function formatFilterTitle(slug: string): string {
+  return slug
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (ch) => ch.toUpperCase());
+}
+
 export default function HomeSections({
   recipes,
   initialQuery,
@@ -134,6 +140,18 @@ export default function HomeSections({
     ok: boolean;
     text: string;
   } | null>(null);
+
+  useEffect(() => {
+    setSearchInput(initialQuery);
+  }, [initialQuery]);
+
+  useEffect(() => {
+    setSelectedCategory(initialFilter || "all");
+  }, [initialFilter]);
+
+  useEffect(() => {
+    setShowVideoOnly(videoOnly);
+  }, [videoOnly]);
 
   const featuredRecipe = useMemo(
     () => recipes.find((r) => r.featured) ?? recipes[0],
@@ -435,6 +453,8 @@ export default function HomeSections({
                 ? "Step-by-Step Video Recipes"
                 : searchInput.trim()
                 ? `Recipes matching “${searchInput.trim()}”`
+                : selectedCategory !== "all"
+                ? `${formatFilterTitle(selectedCategory)} Recipes`
                 : "Latest & Trending Recipes"}
             </h2>
           </div>

@@ -55,7 +55,7 @@ export const RECIPES: Recipe[] = [
     cuisine: "American",
     skill: "Easy",
     cost: "$$",
-    tags: ["slow-cooker", "beef", "beans", "soup", "main-course", "kid-friendly", "lunch", "entertaining"],
+    tags: ["slow-cooker", "beef", "high-protein", "beans", "soup", "main-course", "kid-friendly", "lunch", "entertaining"],
     featured: true,
     videoDuration: "04:15",
     rating: { value: 4.9, count: 2535 },
@@ -116,7 +116,7 @@ export const RECIPES: Recipe[] = [
     cuisine: "Italian-American",
     skill: "Easy",
     cost: "$$",
-    tags: ["soup", "30-minute-meals", "potatoes", "main-course", "kid-friendly", "copycat", "lunch"],
+    tags: ["soup", "30-minute-meals", "potatoes", "main-course", "pork", "high-protein", "kid-friendly", "copycat", "lunch"],
     videoDuration: "03:40",
     rating: { value: 4.9, count: 1840 },
     sections: [
@@ -171,7 +171,7 @@ export const RECIPES: Recipe[] = [
     cuisine: "Mediterranean",
     skill: "Easy",
     cost: "$$$",
-    tags: ["30-minute-meals", "seafood", "main-course", "kid-friendly", "entertaining"],
+    tags: ["30-minute-meals", "seafood", "high-protein", "main-course", "kid-friendly", "entertaining"],
     videoDuration: "02:55",
     rating: { value: 4.9, count: 1420 },
     sections: [

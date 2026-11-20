@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 import {
   ArrowRight,
@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import type { Recipe } from "@/lib/recipes";
 import { formatMinutes } from "@/lib/format";
+import { MAIN_COURSE_SUBCATEGORIES } from "@/components/MainCourseClient";
 
 type HomeSectionsProps = {
   recipes: Recipe[];
@@ -118,6 +119,12 @@ function RecipeThumb({
   );
 }
 
+function formatFilterTitle(slug: string): string {
+  return slug
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (ch) => ch.toUpperCase());
+}
+
 export default function HomeSections({
   recipes,
   initialQuery,
@@ -134,6 +141,18 @@ export default function HomeSections({
     ok: boolean;
     text: string;
   } | null>(null);
+
+  useEffect(() => {
+    setSearchInput(initialQuery);
+  }, [initialQuery]);
+
+  useEffect(() => {
+    setSelectedCategory(initialFilter || "all");
+  }, [initialFilter]);
+
+  useEffect(() => {
+    setShowVideoOnly(videoOnly);
+  }, [videoOnly]);
 
   const featuredRecipe = useMemo(
     () => recipes.find((r) => r.featured) ?? recipes[0],
@@ -435,6 +454,8 @@ export default function HomeSections({
                 ? "Step-by-Step Video Recipes"
                 : searchInput.trim()
                 ? `Recipes matching “${searchInput.trim()}”`
+                : selectedCategory !== "all"
+                ? `${formatFilterTitle(selectedCategory)} Recipes`
                 : "Latest & Trending Recipes"}
             </h2>
           </div>
@@ -479,6 +500,29 @@ export default function HomeSections({
             )}
           </div>
         </div>
+
+        {selectedCategory === "main-course" && !showVideoOnly && (
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--line)] bg-[var(--soft)] p-4">
+            <ul className="m-0 flex flex-wrap items-center gap-2 list-none p-0">
+              {MAIN_COURSE_SUBCATEGORIES.map((sub) => (
+                <li key={sub.id}>
+                  <Link
+                    href={`/category/main-course?sub=${sub.id}`}
+                    className="inline-block rounded-lg border border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 text-xs font-semibold text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors no-underline whitespace-nowrap"
+                  >
+                    {sub.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/category/main-course"
+              className="text-xs font-semibold text-[var(--accent)] hover:underline whitespace-nowrap shrink-0 no-underline"
+            >
+              Open Main Course hub →
+            </Link>
+          </div>
+        )}
 
         {filteredRecipes.length === 0 ? (
           <div className="mt-8 rounded-xl border border-[var(--line)] bg-[var(--soft)] p-10 text-center">

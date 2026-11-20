@@ -13,7 +13,7 @@ const RECIPE_MEGA_MENU: MenuGroup[] = [
   {
     heading: "By Course",
     items: [
-      { label: "Main Course", href: "/?course=main-course#recipes-feed" },
+      { label: "Main Course", href: "/category/main-course" },
       { label: "Dessert", href: "/?course=dessert#recipes-feed" },
       { label: "Soup", href: "/?course=soup#recipes-feed" },
       { label: "Salad", href: "/?course=salad#recipes-feed" },

@@ -221,6 +221,14 @@ export default function Footer() {
                   Contact Our Kitchen
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-[var(--muted)] hover:text-[var(--accent)] no-underline"
+                >
+                  Privacy &amp; Policy
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

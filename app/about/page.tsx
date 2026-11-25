@@ -151,12 +151,12 @@ export default function AboutPage() {
       {/* 2. Our Story & Heritage */}
       <section className="border-b border-[var(--line)] bg-[var(--soft)]">
         <div className="mx-auto max-w-[1200px] px-5 py-14">
-          <div className="max-w-2xl">
+          <div className="w-full">
             <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--accent)]">
               <Heart className="h-4 w-4" aria-hidden="true" />
               <span>Our Story &amp; Heritage</span>
             </p>
-            <h2 className="font-display mt-2 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl text-balance">
+            <h2 className="font-display mt-2 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
               From a stack of suitcases to a kitchen shared with millions
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--muted)]">
